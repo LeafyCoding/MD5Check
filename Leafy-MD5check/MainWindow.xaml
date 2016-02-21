@@ -1,0 +1,57 @@
+﻿<controls:MetroWindow x:Class="Leafy_MD5check.MainWindow"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      Title="Leafy MD5 Checker 🍂"
+                      Background="{DynamicResource MaterialDesignPaper}"
+                      DataContext="{Binding RelativeSource={RelativeSource Self}}"
+                      FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+                      GlowBrush="{DynamicResource AccentColorBrush}"
+                      Icon="Resources/Green-Leaf.ico"
+                      Loaded="MetroWindow_Loaded"
+                      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+                      TitleCaps="False"
+                      WindowStartupLocation="CenterScreen"
+                      WindowState="Maximized"
+                      x:ClassModifier="internal"
+                      mc:Ignorable="d">
+
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding ExportCommand}"
+                    Gesture="Ctrl+E"
+                    HotkeyManager.RegisterGlobalHotkey="False" />
+        <KeyBinding Command="{Binding CompareCommand}"
+                    Gesture="Ctrl+C"
+                    HotkeyManager.RegisterGlobalHotkey="False" />
+    </Window.InputBindings>
+
+    <Grid AllowDrop="True" Drop="Panel_Drop">
+        <DataGrid x:Name="DataGrid"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  CanUserSortColumns="True"
+                  ItemsSource="{Binding Items,
+                                        Mode=TwoWay}"
+                  materialDesign:DataGridAssist.CellPadding="13 8 8 8"
+                  materialDesign:DataGridAssist.ColumnHeaderPadding="8">
+            <DataGrid.Columns>
+                <materialDesign:MaterialDataGridTextColumn Width="200"
+                                                           Binding="{Binding Name}"
+                                                           Header="Name"
+                                                           IsReadOnly="True" />
+                <materialDesign:MaterialDataGridTextColumn MinWidth="200"
+                                                           Binding="{Binding Path}"
+                                                           Header="Path"
+                                                           IsReadOnly="True" />
+                <materialDesign:MaterialDataGridTextColumn MinWidth="300"
+                                                           Binding="{Binding Result}"
+                                                           Header="Result"
+                                                           IsReadOnly="True" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+
+</controls:MetroWindow>
